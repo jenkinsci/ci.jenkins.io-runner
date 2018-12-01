@@ -11,7 +11,6 @@ It is powered by Jenkinsfile Runner and Custom WAR Packager.
 3. Run `make clean build` to build the Jenkinsfile Runner image
 4. Run `make run` to run a simple demo
 5. Run `make demo-plugin` to run a demo of the plugin build
-  * It will not work right now, see Limitations
 
 ### Developing Jenkins Pipeline library
 
