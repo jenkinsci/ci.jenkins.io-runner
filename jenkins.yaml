@@ -13,6 +13,8 @@ jenkins:
             value: /workspace
           - key: PIPELINE_LIBRARY_SKIP_WINDOWS
             value: true
+          - key: PIPELINE_LIBRARY_USE_DEFAULT_MAVEN_REPO
+            value: true
 
 tool:
   git:
