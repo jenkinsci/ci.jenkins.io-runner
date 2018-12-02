@@ -41,7 +41,20 @@ Jenkins Pipeline library may be passed from a volume so that it is possible to t
 	    onenashev/ci.jenkins.io-runner
 ```
 
-### Debugging Jenkinsfile Runner
+### Developer notes
+
+#### Upgrade management
+
+Current versions of Custom WAR Packager are not good at preventing 
+upper bound conflicts between plugins ([JENKINS-51068](https://issues.jenkins-ci.org/browse/JENKINS-51068)).
+In order to work it around, this repository uses `pom.xml` as an input instead of defining plugins in YAML directly.
+So it is possible to ensure that the plugin set is OK just by running `mvn clean verify`.
+
+As a second advantage,
+usage of pom.xml allows using [Dependabot](https://dependabot.com/) to track dependencies and to propose updates.
+This dependency management is quite dangerous, because there is no CI created for this repository so far.
+
+#### Debugging Jenkinsfile Runner
 
 To debug the execution, you can pass the `JFR_LOCAL_WORKSPACE=true` environment variable to the image.
 It will make the builder to execute Pipeline directly 
