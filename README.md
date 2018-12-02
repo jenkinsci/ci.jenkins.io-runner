@@ -2,7 +2,14 @@ ci.jenkins.io-runner
 ===
 
 This project offers environment for running Jenkinsfile instances from ci.jenkins.io locally.
-It is powered by Jenkinsfile Runner and Custom WAR Packager.
+It is powered by [Jenkinsfile Runner](https://github.com/jenkinsci/jenkinsfile-runner)
+and [Custom WAR Packager](https://github.com/jenkinsci/custom-war-packager).
+
+The runner can execute `buildPlugin()` builds and some other commands from
+the [Jenkins Pipeline Library](https://github.com/jenkins-infra/pipeline-library).
+In particular, it is possible to run builds against multiple JDK and Jenkins core version combinations.
+
+See the _Limitations_ section below for some of known limitations.
 
 ### Quickstart
 
@@ -12,6 +19,17 @@ It is powered by Jenkinsfile Runner and Custom WAR Packager.
 4. Run `make run` to run a simple demo
 5. Run `make demo-plugin` to run a demo of the plugin build
 
+### Usage
+
+The runner can be invoked against a workspace which contains a `Jenkinsfile`
+and, if needed, the project's sourcecode.
+
+```
+	docker run --rm -v maven-repo:/root/.m2 \
+	    -v $(shell pwd)/demo/locale-plugin/:/workspace/ \
+	    onenashev/ci.jenkins.io-runner
+```
+
 ### Developing Jenkins Pipeline library
 
 Jenkins Pipeline library may be passed from a volume so that it is possible to test a local snapshot.
@@ -20,8 +38,13 @@ Jenkins Pipeline library may be passed from a volume so that it is possible to t
 	docker run --rm -v maven-repo:/root/.m2 \
 	    -v ${MY_PIPELINE_LIBRARY_DIR}:/var/jenkins_home/pipeline-library \
 	    -v $(shell pwd)/demo/locale-plugin/:/workspace/ \
-	    $(DOCKER_TAG)
+	    onenashev/ci.jenkins.io-runner
 ```
+
+### Debugging Jenkinsfile Runner
+
+To debug the execution, you can pass the `JFR_LOCAL_WORKSPACE=true` environment variable to the image.
+It will make the builder to execute Pipeline directly 
 
 ### Limitations
 
@@ -31,3 +54,7 @@ Jenkins Pipeline library may be passed from a volume so that it is possible to t
 * Only JDK8 and JDK11 are provided in the image
 * Windows steps are not supported
 * Docker-in-Docker is not supported. Steps like `runATH()` and `runPCT()` will not work
+* The runner uses the recent Debian version, and hence it is affected by
+  [SUREFIRE-1588](https://issues.apache.org/jira/browse/SUREFIRE-1588).
+  Plugin POM 3.28 or above should be used to run the build successfully
+

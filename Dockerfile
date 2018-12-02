@@ -5,12 +5,15 @@ LABEL Description="This demo shows how to setup Jenkins Config-as-Code with Dock
 USER root
 
 # Maven
-ENV MAVEN_VERSION 3.5.3
+ENV MAVEN_VERSION 3.5.4
 RUN curl -Lf http://central.maven.org/maven2/org/apache/maven/apache-maven/$MAVEN_VERSION/apache-maven-$MAVEN_VERSION-bin.tar.gz | tar -C /opt -xzv
 ENV M2_HOME /opt/apache-maven-$MAVEN_VERSION
 ENV maven.home $M2_HOME
 ENV M2 $M2_HOME/bin
 ENV PATH $M2:$PATH
+
+# Java toolchain
+RUN apt-get update && apt-get install -y default-jdk
 
 # JDK11
 RUN curl -L --show-error https://download.java.net/java/GA/jdk11/13/GPL/openjdk-11.0.1_linux-x64_bin.tar.gz --output openjdk.tar.gz && \
