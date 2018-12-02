@@ -1,9 +1,14 @@
 ci.jenkins.io-runner
 ===
 
+[![](https://images.microbadger.com/badges/image/onenashev/ci.jenkins.io-runner.svg)](https://microbadger.com/images/onenashev/ci.jenkins.io-runner "Get your own image badge on microbadger.com")
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=oleg-nenashev/ci.jenkins.io-runner)](https://dependabot.com)
+
 This project offers environment for running Jenkinsfile instances from ci.jenkins.io locally.
 It is powered by [Jenkinsfile Runner](https://github.com/jenkinsci/jenkinsfile-runner)
 and [Custom WAR Packager](https://github.com/jenkinsci/custom-war-packager).
+If you want a classic runtime Jenkins master with agents, 
+checkout [my Jenkins Configuration-as-code demo](https://github.com/oleg-nenashev/demo-jenkins-config-as-code).
 
 The runner can execute `buildPlugin()` builds and some other commands from
 the [Jenkins Pipeline Library](https://github.com/jenkins-infra/pipeline-library).
@@ -61,6 +66,10 @@ It will make the builder to execute Pipeline directly
 
 ### Limitations
 
+This project has just started, so it has some downsides being compared 
+to the runtime Pipeline Development instance [here](https://github.com/oleg-nenashev/demo-jenkins-config-as-code).
+All of the limitations below can be improved in the future.
+
 * A custom fork of Jenkins Pipeline Library is needed to run it
   * Follow https://github.com/jenkins-infra/pipeline-library/pull/78
 * `ci.jenkins.io-runner` is a single-container package with only 1 executor
@@ -70,4 +79,6 @@ It will make the builder to execute Pipeline directly
 * The runner uses the recent Debian version, and hence it is affected by
   [SUREFIRE-1588](https://issues.apache.org/jira/browse/SUREFIRE-1588).
   Plugin POM 3.28 or above should be used to run the build successfully
-
+* Docker image is pretty big.
+  It bundles two versions of JDK for starters,
+  but it needs some optimization in any case.
