@@ -26,18 +26,18 @@ and, if needed, the project's sourcecode.
 
 ```
 	docker run --rm -v maven-repo:/root/.m2 \
-	    -v $(shell pwd)/demo/locale-plugin/:/workspace/ \
+	    -v $(pwd)/demo/locale-plugin/:/workspace/ \
 	    onenashev/ci.jenkins.io-runner
 ```
 
-### Developing Jenkins Pipeline library
+### Developing Jenkins Pipeline Library
 
 Jenkins Pipeline library may be passed from a volume so that it is possible to test a local snapshot.
 
 ```
 	docker run --rm -v maven-repo:/root/.m2 \
 	    -v ${MY_PIPELINE_LIBRARY_DIR}:/var/jenkins_home/pipeline-library \
-	    -v $(shell pwd)/demo/locale-plugin/:/workspace/ \
+	    -v $(pwd)/demo/locale-plugin/:/workspace/ \
 	    onenashev/ci.jenkins.io-runner
 ```
 
