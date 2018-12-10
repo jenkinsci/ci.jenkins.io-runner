@@ -4,14 +4,14 @@
 ARTIFACT_ID = jenkinsfile-runner-demo
 VERSION = 256.0-test
 CWP_MAVEN_REPO_PATH=io/jenkins/tools/custom-war-packager/custom-war-packager-cli
-CWP_VERSION=1.5-20181201.012442-2
+CWP_VERSION=1.5
 DOCKER_TAG=onenashev/ci.jenkins.io-runner
 PIPELINE_LIBRARY_DIR=/Users/nenashev/Documents/jenkins/infra/pipeline-library/
 
 #TODO: Replace snapshot parsing by something more reliable
-ifneq (,$(findstring 1.5-2018,$(CWP_VERSION)))
+ifneq (,$(findstring 1.6-2018,$(CWP_VERSION)))
 	CWP_MAVEN_REPO=https://repo.jenkins-ci.org/snapshots
-	CWP_BASE_VERSION=1.5-SNAPSHOT
+	CWP_BASE_VERSION=1.6-SNAPSHOT
 else
 	CWP_MAVEN_REPO=https://repo.jenkins-ci.org/releases
 	CWP_BASE_VERSION=$(CWP_VERSION)
