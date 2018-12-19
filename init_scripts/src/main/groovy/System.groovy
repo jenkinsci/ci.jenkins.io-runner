@@ -9,3 +9,7 @@ Jenkins.instance.quietPeriod = 0
 
 JenkinsLocationConfiguration.get().adminAddress = "admin@non.existent.email"
 Mailer.descriptor().defaultSuffix = "@non.existent.email"
+
+println "===== TEST CLASSLOADING ==="
+URLClassLoader cl = (URLClassLoader)Class.forName("org.kohsuke.stapler.EvaluationTrace.ApplicationTracer").getClassLoader()
+println "URLs of the classloader: ${cl.URLs}"

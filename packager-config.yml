@@ -1,6 +1,6 @@
 bundle:
-  groupId: "io.jenkins.tools.ci-jenkins.io.runner"
-  artifactId: "jenkinsfile-runner"
+  groupId: "io.jenkins.jenkinsfile-runner.demo"
+  artifactId: "ci.jenkins.io-runner"
   vendor: "Oleg Nenashev"
   title: "ci.jenkins.io Runner"
   description: "Emulates the ci.jenkins.io environment, as Jenkinsfile Runner"
@@ -9,13 +9,10 @@ buildSettings:
   pomIgnoreRoot: true
   jenkinsfileRunner:
     source:
-      groupId: "io.jenkins"
+      groupId: "io.jenkins.jenkinsfile-runner"
       artifactId: "jenkinsfile-runner"
-      build:
-        noCache: true
       source:
-        git: https://github.com/jenkinsci/jenkinsfile-runner.git
-        commit: 66626ef7c95c281d5b3ef9da9f5fdc36b4b42bf0
+        version: 1.0-beta-4
     docker:
       base: "jenkins/ci.jenkins.io-runner.base"
       tag: "onenashev/ci.jenkins.io-runner"
@@ -24,7 +21,7 @@ war:
   groupId: "org.jenkins-ci.main"
   artifactId: "jenkins-war"
   source:
-    version: "2.138.3"
+    version: "2.156"
 systemProperties:
   jenkins.model.Jenkins.slaveAgentPort: "50000"
   jenkins.model.Jenkins.slaveAgentPortEnforce: "true"
