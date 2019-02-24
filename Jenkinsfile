@@ -9,7 +9,8 @@ node ("docker") {
     }
     
     stage ("Build") {
-        sh "make docker build"
+        sh "make docker"
+        infra.runWithMaven("make build")
     }
     
     stage("Run demo jobs") {
