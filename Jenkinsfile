@@ -16,7 +16,12 @@ node ("linux") {
            hasSettingsXml = true
         }
         sh "make clean docker"
-        infra.runWithMaven("make build")
+        
+        def makeCommand = "make build"
+        if (hasSettingsXml) {
+            makeCommand += " -e CWP_OPTS='-mvnSettingsFile=${settingsXml}'"
+        }
+        infra.runWithMaven(makeCommand)
     }
     
     stage("Run demo jobs") {
