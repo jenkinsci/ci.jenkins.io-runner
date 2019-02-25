@@ -7,6 +7,7 @@ CWP_MAVEN_REPO_PATH=io/jenkins/tools/custom-war-packager/custom-war-packager-cli
 CWP_VERSION=1.5
 DOCKER_TAG=jenkins4eval/ci.jenkins.io-runner:local-test
 PIPELINE_LIBRARY_DIR=/Users/nenashev/Documents/jenkins/infra/pipeline-library/
+CWP_OPTS=""
 
 #TODO: Replace snapshot parsing by something more reliable
 ifneq (,$(findstring 1.6-2018,$(CWP_VERSION)))
@@ -34,7 +35,7 @@ docker:
 
 build: .build/cwp-cli-${CWP_VERSION}.jar
 	java -jar .build/cwp-cli-${CWP_VERSION}.jar \
-	     -configPath packager-config.yml -version ${VERSION}
+	     -configPath packager-config.yml -version ${VERSION} ${CWP_OPTS}
 
 .PHONY: run
 run:
