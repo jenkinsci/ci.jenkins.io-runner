@@ -11,7 +11,7 @@ node ("linux") {
     stage ("Build") {
         def settingsXml = "${pwd tmp: true}/settings-azure.xml"
         def hasSettingsXml = false
-        if (retrieveMavenSettingsFile(settingsXml)) {
+        if (infra.retrieveMavenSettingsFile(settingsXml)) {
            // Running within Jenkins infra
            hasSettingsXml = true
         }
