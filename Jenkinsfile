@@ -9,7 +9,7 @@ node ("linux") {
     }
     
     stage ("Build") {
-        sh "make docker"
+        sh "make clean docker"
         infra.runWithMaven("make build")
     }
     
