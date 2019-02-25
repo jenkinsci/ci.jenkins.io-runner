@@ -164,7 +164,7 @@
     <dependency>
       <groupId>org.jvnet.hudson.plugins</groupId>
       <artifactId>checkstyle</artifactId>
-      <version>3.50</version>
+      <version>4.0.0</version>
     </dependency>
     <!-- TODO: This is an upper bounds disaster, ignore for now until needed
     <dependency>
