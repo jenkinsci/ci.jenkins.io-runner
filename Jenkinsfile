@@ -3,7 +3,7 @@ properties([
     buildDiscarder(logRotator(numToKeepStr: '5')),
 ])
     
-node ("docker") {
+node ("linux") {
     stage("Checkout") {
         checkout scm
     }
