@@ -1,6 +1,6 @@
 FROM jenkins/jenkins:2.138.3
 MAINTAINER Oleg Nenashev <o.v.nenashev@gmail.com>
-LABEL Description="This demo shows how to setup Jenkins Config-as-Code with Docker, Pipeline, and Groovy Hook Scripts" Vendor="Oleg Nenashev" Version="0.2"
+LABEL Description="This is a base image for a single-shot ci.jenkins.io demo" Vendor="Oleg Nenashev" Version="0.3"
 
 USER root
 
