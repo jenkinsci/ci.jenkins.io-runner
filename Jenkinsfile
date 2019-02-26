@@ -25,8 +25,16 @@ node ("linux") {
     }
     
     stage("Run demo jobs") {
-        sh "make run"
-        // TODO: Update the demo to support using the Azure mirror instead of the local Maven volume
-        // sh "make demo-plugin"
+        def runOptions = ""
+        if (hasSettingsXml) {
+            runOptions += " -e DOCKER_RUN_OPTS='-v ${settingsXml}:/root/.m2/settings.xml:ro'"
+        }
+        
+        stage("Smoke test") {
+          sh "make run ${runOptions}"
+        }
+        stage("Plugin build") {
+          sh "make demo-plugin ${runOptions}"
+        }
     }
 }
