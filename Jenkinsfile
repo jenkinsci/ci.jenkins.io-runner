@@ -4,17 +4,17 @@ properties([
 ])
     
 node ("linux") {
+    def settingsXml = "${pwd tmp: true}/settings-azure.xml"
+    def hasSettingsXml = false
     stage("Checkout") {
         checkout scm
-    }
-    
-    stage ("Build") {
-        def settingsXml = "${pwd tmp: true}/settings-azure.xml"
-        def hasSettingsXml = false
         if (infra.retrieveMavenSettingsFile(settingsXml)) {
            // Running within Jenkins infra
            hasSettingsXml = true
         }
+    }
+    
+    stage ("Build") {
         sh "make clean docker"
         
         def makeCommand = "make build"
