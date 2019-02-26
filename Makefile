@@ -8,6 +8,7 @@ CWP_VERSION=1.5
 DOCKER_TAG=jenkins4eval/ci.jenkins.io-runner:local-test
 PIPELINE_LIBRARY_DIR=/Users/nenashev/Documents/jenkins/infra/pipeline-library/
 CWP_OPTS=""
+DOCKER_RUN_OPTS="-v maven-repo:/root/.m2"
 
 #TODO: Replace snapshot parsing by something more reliable
 ifneq (,$(findstring 1.6-2018,$(CWP_VERSION)))
@@ -39,18 +40,19 @@ build: .build/cwp-cli-${CWP_VERSION}.jar
 
 .PHONY: run
 run:
-	docker run --rm -v $(shell pwd)/demo/simple/:/workspace/ \
-	    $(DOCKER_TAG)
+	docker run --rm ${DOCKER_RUN_OPTS} \
+	    -v $(shell pwd)/demo/simple/:/workspace/ \
+	    $(DOCKER_TAG) 
 
 .PHONY: demo-plugin
 demo-plugin:
-	docker run --rm -v maven-repo:/root/.m2 \
+	docker run --rm ${DOCKER_RUN_OPTS} \
 	    -v $(shell pwd)/demo/locale-plugin/:/workspace/ \
-	    $(DOCKER_TAG)
+	    $(DOCKER_TAG) ${DOCKER_RUN_OPTS}
 
 .PHONY: demo-plugin-local-lib
 demo-plugin-local-lib:
-	docker run --rm -v maven-repo:/root/.m2 \
+	docker run --rm ${DOCKER_RUN_OPTS} \
 		-v ${PIPELINE_LIBRARY_DIR}:/var/jenkins_home/pipeline-library \
 	    -v $(shell pwd)/demo/locale-plugin/:/workspace/ \
-	    $(DOCKER_TAG)
+	    $(DOCKER_TAG) 
