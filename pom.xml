@@ -7,7 +7,7 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>3.39</version>
+    <version>3.40</version>
   </parent>
 
   <groupId>com.github.oleg-nenashev.ci-jenkinsfile-runner</groupId>
