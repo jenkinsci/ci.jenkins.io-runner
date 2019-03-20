@@ -19,7 +19,7 @@ node ("linux") {
         
         def makeCommand = "make build"
         if (hasSettingsXml) {
-            makeCommand += " -e CWP_OPTS='-mvnSettingsFile=${settingsXml}'"
+            makeCommand += " -e MVN_SETTINGS_FILE='${settingsXml}'"
         }
         infra.runWithMaven(makeCommand)
     }
