@@ -51,7 +51,7 @@ run:
 demo-plugin:
 	docker run --rm ${DOCKER_RUN_OPTS} \
 	    -v $(shell pwd)/demo/locale-plugin/:/workspace/ \
-	    $(DOCKER_TAG) ${DOCKER_RUN_OPTS}
+	    $(DOCKER_TAG)
 
 .PHONY: demo-plugin-local-lib
 demo-plugin-local-lib:
