@@ -8,7 +8,7 @@ CWP_VERSION=1.5
 DOCKER_TAG=jenkins4eval/ci.jenkins.io-runner:local-test
 PIPELINE_LIBRARY_DIR=/Users/nenashev/Documents/jenkins/infra/pipeline-library/
 CWP_OPTS=
-DOCKER_RUN_OPTS="-v maven-repo:/root/.m2"
+DOCKER_RUN_OPTS=-v maven-repo:/root/.m2
 # It will not work properly if Jenkins repo is not set, so missing settings is not an option here
 MVN_SETTINGS_FILE ?= $(HOME)/.m2/settings.xml
 
