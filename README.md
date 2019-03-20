@@ -18,7 +18,8 @@ See the _Limitations_ section below for some of known limitations.
 
 ### Quickstart
 
-1. Checkout this repo
+0. Checkout this repo
+1. Configure Maven Settings file according to the [Jenkins Plugin Tutorial](https://wiki.jenkins.io/display/JENKINS/Plugin+tutorial) so that plugins can be properly downloaded for the pom.xml input
 2. Run `make docker` to build the base image
 3. Run `make clean build` to build the Jenkinsfile Runner image
 4. Run `make run` to run a simple demo
