@@ -1,2 +1,9 @@
 Jenkins Config As Code Example.iml
 .build
+tmp/
+
+.factorypath
+.settings
+.project
+.classpath
+
