@@ -2,7 +2,7 @@ ci.jenkins.io-runner
 ===
 
 [![](https://images.microbadger.com/badges/image/onenashev/ci.jenkins.io-runner.svg)](https://microbadger.com/images/onenashev/ci.jenkins.io-runner "Get your own image badge on microbadger.com")
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=oleg-nenashev/ci.jenkins.io-runner)](https://dependabot.com)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=jenkinsci/ci.jenkins.io-runner)](https://dependabot.com)
 
 This project offers environment for running Jenkinsfile instances from ci.jenkins.io locally.
 It is powered by [Jenkinsfile Runner](https://github.com/jenkinsci/jenkinsfile-runner)
