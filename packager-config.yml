@@ -15,7 +15,7 @@ buildSettings:
         noCache: true
       source:
         git: https://github.com/jenkinsci/jenkinsfile-runner.git
-        commit: 66626ef7c95c281d5b3ef9da9f5fdc36b4b42bf0
+        branch: 1.0-beta-7
     docker:
       base: "jenkins/ci.jenkins.io-runner.base"
       tag: "jenkins4eval/ci.jenkins.io-runner:local-test"
@@ -24,7 +24,7 @@ war:
   groupId: "org.jenkins-ci.main"
   artifactId: "jenkins-war"
   source:
-    version: "2.138.3"
+    version: "2.164.1"
 systemProperties:
   jenkins.model.Jenkins.slaveAgentPort: "50000"
   jenkins.model.Jenkins.slaveAgentPortEnforce: "true"

@@ -7,8 +7,10 @@ CWP_MAVEN_REPO_PATH=io/jenkins/tools/custom-war-packager/custom-war-packager-cli
 CWP_VERSION=1.5
 DOCKER_TAG=jenkins4eval/ci.jenkins.io-runner:local-test
 PIPELINE_LIBRARY_DIR=/Users/nenashev/Documents/jenkins/infra/pipeline-library/
-CWP_OPTS=""
-DOCKER_RUN_OPTS="-v maven-repo:/root/.m2"
+CWP_OPTS=
+DOCKER_RUN_OPTS=-v maven-repo:/root/.m2
+# It will not work properly if Jenkins repo is not set, so missing settings is not an option here
+MVN_SETTINGS_FILE ?= $(HOME)/.m2/settings.xml
 
 #TODO: Replace snapshot parsing by something more reliable
 ifneq (,$(findstring 1.6-2018,$(CWP_VERSION)))
@@ -36,7 +38,8 @@ docker:
 
 build: .build/cwp-cli-${CWP_VERSION}.jar
 	java -jar .build/cwp-cli-${CWP_VERSION}.jar \
-	     -configPath packager-config.yml -version ${VERSION} ${CWP_OPTS}
+	     -configPath packager-config.yml -version ${VERSION} ${CWP_OPTS} \
+		 -mvnSettingsFile ${MVN_SETTINGS_FILE}
 
 .PHONY: run
 run:
@@ -48,7 +51,7 @@ run:
 demo-plugin:
 	docker run --rm ${DOCKER_RUN_OPTS} \
 	    -v $(shell pwd)/demo/locale-plugin/:/workspace/ \
-	    $(DOCKER_TAG) ${DOCKER_RUN_OPTS}
+	    $(DOCKER_TAG)
 
 .PHONY: demo-plugin-local-lib
 demo-plugin-local-lib:
