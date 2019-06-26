@@ -59,7 +59,7 @@
     <dependency>
       <groupId>com.github.kostyasha.yet-another-docker</groupId>
       <artifactId>yet-another-docker-plugin</artifactId>
-      <version>0.1.0-rc54</version>
+      <version>0.1.1</version>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
