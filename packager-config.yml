@@ -7,6 +7,7 @@ bundle:
 buildSettings:
   pom: "pom.xml"
   pomIgnoreRoot: true
+  pomIncludeWar: true
   jenkinsfileRunner:
     source:
       groupId: "io.jenkins"
@@ -20,11 +21,6 @@ buildSettings:
       base: "jenkins/ci.jenkins.io-runner.base"
       tag: "jenkins4eval/ci.jenkins.io-runner:local-test"
       build: true
-war:
-  groupId: "org.jenkins-ci.main"
-  artifactId: "jenkins-war"
-  source:
-    version: "2.164.1"
 systemProperties:
   jenkins.model.Jenkins.slaveAgentPort: "50000"
   jenkins.model.Jenkins.slaveAgentPortEnforce: "true"

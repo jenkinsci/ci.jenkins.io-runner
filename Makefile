@@ -4,7 +4,7 @@
 ARTIFACT_ID = jenkinsfile-runner-demo
 VERSION = 256.0-test
 CWP_MAVEN_REPO_PATH=io/jenkins/tools/custom-war-packager/custom-war-packager-cli
-CWP_VERSION=1.5
+CWP_VERSION=2.0-alpha-2
 DOCKER_TAG=jenkins4eval/ci.jenkins.io-runner:local-test
 PIPELINE_LIBRARY_DIR=/Users/nenashev/Documents/jenkins/infra/pipeline-library/
 CWP_OPTS=
