@@ -10,7 +10,7 @@ jenkins:
     - envVars:
         env:
           - key: JFR_LOCAL_WORKSPACE
-            value: /workspace
+            value: ${JFR_LOCAL_WORKSPACE}
           - key: PIPELINE_LIBRARY_SKIP_WINDOWS
             value: true
           - key: PIPELINE_LIBRARY_USE_DEFAULT_MAVEN_REPO
