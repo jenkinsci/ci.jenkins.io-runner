@@ -16,7 +16,7 @@ buildSettings:
         noCache: true
       source:
         git: https://github.com/jenkinsci/jenkinsfile-runner.git
-        branch: 1.0-beta-7
+        branch: 1.0-beta-12
     docker:
       base: "jenkins/ci.jenkins.io-runner.base"
       tag: "jenkins4eval/ci.jenkins.io-runner:local-test"
