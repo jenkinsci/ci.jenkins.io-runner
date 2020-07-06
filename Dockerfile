@@ -5,8 +5,8 @@ LABEL Description="This is a base image for a single-shot ci.jenkins.io demo" Ve
 USER root
 
 # Maven
-ENV MAVEN_VERSION 3.5.4
-RUN curl -Lf http://central.maven.org/maven2/org/apache/maven/apache-maven/$MAVEN_VERSION/apache-maven-$MAVEN_VERSION-bin.tar.gz | tar -C /opt -xzv
+ENV MAVEN_VERSION 3.6.3
+RUN curl -Lf ttps://downloads.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | tar -C /opt -xzv
 ENV M2_HOME /opt/apache-maven-$MAVEN_VERSION
 ENV maven.home $M2_HOME
 ENV M2 $M2_HOME/bin
