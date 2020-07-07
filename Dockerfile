@@ -6,7 +6,7 @@ USER root
 
 # Maven
 ENV MAVEN_VERSION 3.6.3
-RUN curl -Lf ttps://downloads.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | tar -C /opt -xzv
+RUN curl -Lf https://downloads.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | tar -C /opt -xzv
 ENV M2_HOME /opt/apache-maven-$MAVEN_VERSION
 ENV maven.home $M2_HOME
 ENV M2 $M2_HOME/bin
