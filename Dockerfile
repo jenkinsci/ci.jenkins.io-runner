@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.164.1
+FROM jenkins/jenkins:2.250
 MAINTAINER Oleg Nenashev <o.v.nenashev@gmail.com>
 LABEL Description="This is a base image for a single-shot ci.jenkins.io demo" Vendor="Oleg Nenashev" Version="0.3"
 
