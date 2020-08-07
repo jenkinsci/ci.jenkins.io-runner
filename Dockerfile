@@ -28,7 +28,7 @@ FROM adoptopenjdk:8u262-b10-jdk-hotspot
 LABEL Description="This is a base image for a single-shot ci.jenkins.io demo" Vendor="Oleg Nenashev" Version="0.3"
 
 # Packages
-RUN apt-get update && apt-get install wget && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y wget git && rm -rf /var/lib/apt/lists/*
 
 # Maven
 ENV MAVEN_VERSION 3.6.3

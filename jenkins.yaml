@@ -5,7 +5,6 @@ jenkins:
   scmCheckoutRetryCount: 0
   myViewsTabBar: "standard"
   viewsTabBar: "standard"
-
   globalNodeProperties:
     - envVars:
         env:
@@ -21,5 +20,7 @@ tool:
     installations:
     - home: "git"
       name: "Default"
-
-
+groovy:
+  - file: "/usr/share/jenkins/ref/init.groovy.d/System.groovy"
+  - file: "/usr/share/jenkins/ref/init.groovy.d/Tools.groovy"
+  - file: "/usr/share/jenkins/ref/init.groovy.d/PipelineLibrary.groovy"
