@@ -1,3 +1,7 @@
+###
+# WARNING: It is unused at the moment, because the flow is using Jenkinsfile Runner Packaging POM
+# The File will be reused again once Custom WAR Packager supports the new definition type
+###
 bundle:
   groupId: "io.jenkins.tools.ci-jenkins.io.runner"
   artifactId: "jenkinsfile-runner"
