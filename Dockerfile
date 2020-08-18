@@ -52,7 +52,6 @@ COPY --from=jenkins/jenkinsfile-runner:1.0-beta-15 /app/bin/jenkinsfile-runner-l
 # /app/jenkins is a location of the WAR file. It can be empty in the current packaging
 RUN mkdir /app/jenkins
 
-VOLUME /build
 VOLUME /usr/share/jenkins/ref/casc
 
 ENV JENKINS_HOME="/usr/share/jenkins/ref/"
@@ -64,5 +63,4 @@ COPY init_scripts/src/main/groovy/* /usr/share/jenkins/ref/init.groovy.d/
 ENTRYPOINT ["/app/bin/jenkinsfile-runner",\
             "-w", "/app/jenkins",\
             "-p", "/usr/share/jenkins/ref/plugins",\
-            "-f", "/workspace/Jenkinsfile",\
-            "--runWorkspace", "/build"]
+            "-f", "/workspace/Jenkinsfile"]
