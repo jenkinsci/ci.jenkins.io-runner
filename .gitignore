@@ -3,8 +3,12 @@ Jenkins Config As Code Example.iml
 tmp/
 target
 
+# VS Code
 .factorypath
 .settings
 .project
 .classpath
 
+# IDEA
+.idea
+*.iml

@@ -1,0 +1,20 @@
+# Repository
+.git
+.github
+.demo
+Makefile
+README.md
+
+# Custom WAR Packager
+.build
+tmp
+
+# Maven Packaging flow
+target
+
+# IDE
+.settings
+.idea
+.classpath
+.factoryclass
+.project

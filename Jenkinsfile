@@ -16,9 +16,7 @@ timeout(time: 2, unit: 'HOURS') {
         }
 
         stage ("Build") {
-            sh "make clean docker"
-
-            def makeCommand = "make build"
+            def makeCommand = "make clean build"
             if (hasSettingsXml) {
                 makeCommand += " -e MVN_SETTINGS_FILE='${settingsXml}'"
             }

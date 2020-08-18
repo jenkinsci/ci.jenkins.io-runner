@@ -5,8 +5,7 @@ ci.jenkins.io-runner
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=jenkinsci/ci.jenkins.io-runner)](https://dependabot.com)
 
 This project offers environment for running Jenkinsfile instances from ci.jenkins.io locally.
-It is powered by [Jenkinsfile Runner](https://github.com/jenkinsci/jenkinsfile-runner)
-and [Custom WAR Packager](https://github.com/jenkinsci/custom-war-packager).
+It is powered by [Jenkinsfile Runner](https://github.com/jenkinsci/jenkinsfile-runner) and the experimental [JFR Maven packaging flow](https://github.com/jenkinsci/jenkinsfile-runner/tree/master/packaging-parent-pom) introduced in 1.0-beta-16.
 If you want a classic runtime Jenkins master with agents, 
 checkout [my Jenkins Configuration-as-code demo](https://github.com/oleg-nenashev/demo-jenkins-config-as-code).
 
@@ -76,10 +75,4 @@ All of the limitations below can be improved in the future.
 * `ci.jenkins.io-runner` is a single-container package with only 1 executor
 * Only JDK8 and JDK11 are provided in the image
 * Windows steps are not supported
-* Docker-in-Docker is not supported. Steps like `runATH()` and `runPCT()` will not work
-* The runner uses the recent Debian version, and hence it is affected by
-  [SUREFIRE-1588](https://issues.apache.org/jira/browse/SUREFIRE-1588).
-  Plugin POM 3.28 or above should be used to run the build successfully
-* Docker image is pretty big.
-  It bundles two versions of JDK for starters,
-  but it needs some optimization in any case.
+* Docker image is pretty big, because it bundles two versions of JDK

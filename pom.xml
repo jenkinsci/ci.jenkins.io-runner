@@ -5,44 +5,46 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.jenkins-ci.plugins</groupId>
-    <artifactId>plugin</artifactId>
-    <version>4.3</version>
+    <groupId>io.jenkins.jenkinsfile-runner</groupId>
+    <artifactId>packaging-parent-pom</artifactId>
+    <version>1.0-beta-16</version>
   </parent>
 
-  <groupId>com.github.oleg-nenashev.ci-jenkinsfile-runner</groupId>
-  <artifactId>parent</artifactId>
+  <!-- TODO: Group ID and versions are tweaked due to https://github.com/jenkinsci/jenkinsfile-runner/pull/356 -->
+  <groupId>io.jenkins.jenkinsfile-runner</groupId>
+  <artifactId>ci.jenkins.io.runner</artifactId>
   <name>ci.jenkins.io Runner Plugins</name>
   <description>Jenkinsfile Runner reference implementation which emulates ci.jenkins.io</description>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0-beta-16</version>
 
   <properties>
-    <jenkins.version>2.235.1</jenkins.version>
-    <java.level>8</java.level>
+    <jfr.name>ci.jenkins.io-runner</jfr.name>
+    <jfr.packaging.skip.assembly>true</jfr.packaging.skip.assembly>
   </properties>
 
   <developers>
     <developer>
       <name>Oleg Nenashev</name>
       <organization>Jenkins project</organization>
-      <organizationUrl>https://jenkins.io</organizationUrl>
+      <organizationUrl>https://www.jenkins.io</organizationUrl>
     </developer>
   </developers>
 
-  <dependencyManagement>
-    <dependencies>
-        <dependency>
-            <groupId>io.jenkins.tools.bom</groupId>
-            <artifactId>bom-2.235.x</artifactId>
-            <version>11</version>
-            <scope>import</scope>
-            <type>pom</type>
-        </dependency>
-    </dependencies>
-  </dependencyManagement>
-
   <dependencies>
-    <!-- Jenkins packages just to have code completion & co -->
+    <!-- Additional dependencies not included into parent POM -->
+    <dependency>
+      <groupId>org.jenkinsci.plugins</groupId>
+      <artifactId>pipeline-model-definition</artifactId>
+      <!--TODO: Use BOM? -->
+      <version>1.7.1</version>
+      <exclusions>
+        <!-- Upper bounds conflict with the Jenkins Core -->
+        <exclusion>
+          <groupId>com.google.guava</groupId>
+          <artifactId>guava</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>cloudbees-folder</artifactId>
@@ -74,42 +76,6 @@
       <version>2.1</version>
     </dependency>
     <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-basic-steps</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-cps</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-cps-global-lib</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-durable-task-step</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-job</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-scm-step</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-step-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-support</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>pipeline-utility-steps</artifactId>
       <version>2.6.1</version>
@@ -121,15 +87,7 @@
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>credentials</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>junit</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>structs</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
@@ -141,19 +99,11 @@
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>durable-task</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>script-security</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>credentials-binding</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>git-client</artifactId>
+      <artifactId>git</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
@@ -182,6 +132,11 @@
     <dependency>
       <groupId>io.jenkins</groupId>
       <artifactId>configuration-as-code</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>configuration-as-code-groovy</artifactId>
+      <version>1.1</version>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.main</groupId>

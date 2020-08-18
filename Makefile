@@ -28,18 +28,23 @@ clean:
 
 .PHONY: docker
 docker:
-	docker build -t jenkins/ci.jenkins.io-runner.base .
+	docker build -t $(DOCKER_TAG) .
 
-.build/cwp-cli-${CWP_VERSION}.jar:
-	rm -rf .build
-	mkdir -p .build
-	wget -O .build/cwp-cli-${CWP_VERSION}.jar $(CWP_MAVEN_REPO)/${CWP_MAVEN_REPO_PATH}/${CWP_BASE_VERSION}/custom-war-packager-cli-${CWP_VERSION}-jar-with-dependencies.jar
-	touch .build/cwp-cli-${CWP_VERSION}.jar
+build: docker
 
-build: .build/cwp-cli-${CWP_VERSION}.jar
-	java -jar .build/cwp-cli-${CWP_VERSION}.jar \
-	     -configPath packager-config.yml -version ${VERSION} ${CWP_OPTS} \
-		 -mvnSettingsFile ${MVN_SETTINGS_FILE}
+#docker:
+#	docker build -t jenkins/ci.jenkins.io-runner.base .
+#
+#.build/cwp-cli-${CWP_VERSION}.jar:
+#	rm -rf .build
+#	mkdir -p .build
+#	wget -O .build/cwp-cli-${CWP_VERSION}.jar $(CWP_MAVEN_REPO)/${CWP_MAVEN_REPO_PATH}/${CWP_BASE_VERSION}/custom-war-packager-cli-${CWP_VERSION}-jar-with-dependencies.jar
+#	touch .build/cwp-cli-${CWP_VERSION}.jar
+#
+#build: .build/cwp-cli-${CWP_VERSION}.jar
+#	java -jar .build/cwp-cli-${CWP_VERSION}.jar \
+#	     -configPath packager-config.yml -version ${VERSION} ${CWP_OPTS} \
+#		 -mvnSettingsFile ${MVN_SETTINGS_FILE}
 
 .PHONY: run
 run:
