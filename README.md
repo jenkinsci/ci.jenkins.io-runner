@@ -1,8 +1,9 @@
 ci.jenkins.io-runner
 ===
 
+[![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/jenkinsci/ci.jenkins.io-runner?include_prereleases&label=changelog)](https://github.com/jenkinsci/ci.jenkins.io-runner/releases/latest)
 [![](https://images.microbadger.com/badges/image/onenashev/ci.jenkins.io-runner.svg)](https://microbadger.com/images/onenashev/ci.jenkins.io-runner "Get your own image badge on microbadger.com")
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=jenkinsci/ci.jenkins.io-runner)](https://dependabot.com)
+[![Gitter](https://badges.gitter.im/jenkinsci/jenkinsfile-runner.svg)](https://gitter.im/jenkinsci/jenkinsfile-runner)
 
 This project offers environment for running Jenkinsfile instances from ci.jenkins.io locally.
 It is powered by [Jenkinsfile Runner](https://github.com/jenkinsci/jenkinsfile-runner) and the experimental [JFR Maven packaging flow](https://github.com/jenkinsci/jenkinsfile-runner/tree/master/packaging-parent-pom) introduced in 1.0-beta-16.
@@ -17,12 +18,10 @@ See the _Limitations_ section below for some of known limitations.
 
 ### Quickstart
 
-0. Checkout this repo
-1. Configure Maven Settings file according to the [Jenkins Plugin Tutorial](https://wiki.jenkins.io/display/JENKINS/Plugin+tutorial) so that plugins can be properly downloaded for the pom.xml input
+1. Checkout this repo
 2. Run `make docker` to build the base image
-3. Run `make clean build` to build the Jenkinsfile Runner image
-4. Run `make run` to run a simple demo
-5. Run `make demo-plugin` to run a demo of the plugin build
+3. Run `make run` to run a simple demo
+4. Run `make demo-plugin` to run a demo of the plugin build
 
 ### Usage
 
@@ -50,19 +49,24 @@ Jenkins Pipeline library may be passed from a volume so that it is possible to t
 
 #### Upgrade management
 
-Current versions of Custom WAR Packager are not good at preventing 
-upper bound conflicts between plugins ([JENKINS-51068](https://issues.jenkins-ci.org/browse/JENKINS-51068)).
-In order to work it around, this repository uses `pom.xml` as an input instead of defining plugins in YAML directly.
-So it is possible to ensure that the plugin set is OK just by running `mvn clean verify`.
-
-As a second advantage,
-usage of pom.xml allows using [Dependabot](https://dependabot.com/) to track dependencies and to propose updates.
-This dependency management is quite dangerous, because there is no CI created for this repository so far.
+This repository uses [Dependabot](https://dependabot.com/) to track dependencies and to propose updates.
+Many plugin and library dependencies actually come from Bills of Materials supplied by the JFR packaging parent POM:
+[Jenkins Core BOM](https://github.com/jenkinsci/jenkins/tree/master/bom) and
+[Jenkins Plugin BOM](https://github.com/jenkinsci/bom).
+It reduces the number of moving parts by consuming the cross-verified plugin versions.
 
 #### Debugging Jenkinsfile Runner
 
 To debug the execution, you can pass the `JFR_LOCAL_WORKSPACE=true` environment variable to the image.
-It will make the builder to execute Pipeline directly 
+It will make the builder to execute Pipeline directly.
+It is also possible to debug Jenkinsfile Runner and Groovy init hooks by passing the remote debug options and exposing the debug port:
+
+```
+	docker run --rm -v maven-repo:/root/.m2 \
+	    -v $(pwd)/demo/locale-plugin/:/workspace/ \
+	    -p 5005:5005 -e JAVA_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,address=5005,suspend=y" \
+	    onenashev/ci.jenkins.io-runner
+```
 
 ### Limitations
 
