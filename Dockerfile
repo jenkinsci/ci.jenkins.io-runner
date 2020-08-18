@@ -6,6 +6,7 @@ FROM jenkins/jenkinsfile-runner:1.0-beta-15 as jfr-base
 # Build stage
 ###
 FROM maven:3.6.3 as jfr-build
+RUN apt-get update && apt-get install unzip && rm -rf /var/lib/apt/lists/*
 ENV MAVEN_OPTS=-Dmaven.repo.local=/mavenrepo
 COPY --from=jfr-mvncache /mavenrepo /mavenrepo
 ADD pom.xml /jenkinsfile-runner/pom.xml
