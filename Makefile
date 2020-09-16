@@ -64,3 +64,13 @@ demo-plugin-local-lib:
 		-v ${PIPELINE_LIBRARY_DIR}:/var/jenkins_home/pipeline-library \
 	    -v $(shell pwd)/demo/locale-plugin/:/workspace/ \
 	    $(DOCKER_TAG) 
+
+.PHONY: jfr-profile
+jfr-profile:
+	mkdir -p war-empty && \
+	mkdir -p demo/locale-plugin/work && \
+	cd demo/locale-plugin/work && \
+	CASC_JENKINS_CONFIG=../../../jenkins-dev.yaml \
+	JAVA_OPTS=-XX:StartFlightRecording=disk=true,dumponexit=true,filename=recording-no-war.jfr,maxsize=1024m,maxage=1d,settings=profile,path-to-gc-roots=true \
+	../../../target/appassembler/bin/jenkinsfile-runner \
+	-p ../../../target/plugins/ -w war-empty -f ../repo/Jenkinsfile

@@ -1,0 +1,27 @@
+jenkins:
+  mode: NORMAL
+  numExecutors: 1
+  labelString: "linux"
+  scmCheckoutRetryCount: 0
+  myViewsTabBar: "standard"
+  viewsTabBar: "standard"
+  globalNodeProperties:
+    - envVars:
+        env:
+          #TODO: Copies work
+          - key: JFR_LOCAL_WORKSPACE
+            value: /c/Users/Oleg/Documents/jenkins/jfr/ci.jenkins.io-runner/demo/locale-plugin/repo
+          - key: PIPELINE_LIBRARY_SKIP_WINDOWS
+            value: true
+          - key: PIPELINE_LIBRARY_USE_DEFAULT_MAVEN_REPO
+            value: true
+
+tool:
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+groovy:
+  - file: "../../../init_scripts/src/main/groovy/System.groovy"
+  - file: "../../../init_scripts/src/main/groovy/Tools.groovy"
+  - file: "../../../init_scripts/src/main/groovy/PipelineLibrary.groovy"
