@@ -52,7 +52,6 @@ COPY --from=jenkins/jenkinsfile-runner:1.0-beta-15 /app/bin/jenkinsfile-runner-l
 # /app/jenkins is a location of the WAR file. It can be empty in the current packaging
 RUN mkdir /app/jenkins
 
-VOLUME /build
 VOLUME /usr/share/jenkins/ref/casc
 
 ENV JENKINS_HOME="/usr/share/jenkins/ref/"
@@ -61,10 +60,7 @@ ENV CASC_JENKINS_CONFIG /usr/share/jenkins/ref/jenkins.yaml
 COPY jenkins.yaml /usr/share/jenkins/ref/jenkins.yaml
 COPY init_scripts/src/main/groovy/* /usr/share/jenkins/ref/init.groovy.d/
 
-# Otherwise, JENKINS_HOME is not propagated
-#ENTRYPOINT ["/app/bin/jenkinsfile-runner-launcher"]
 ENTRYPOINT ["/app/bin/jenkinsfile-runner",\
             "-w", "/app/jenkins",\
             "-p", "/usr/share/jenkins/ref/plugins",\
-            "-f", "/workspace/Jenkinsfile",\
-            "--runWorkspace", "/build"]
+            "-f", "/workspace/Jenkinsfile"]
