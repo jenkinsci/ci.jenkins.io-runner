@@ -41,6 +41,6 @@ jfr-profile:
 	mkdir -p demo/locale-plugin/work && \
 	cd demo/locale-plugin/work && \
 	CASC_JENKINS_CONFIG=../../../jenkins-dev.yaml \
-	JAVA_OPTS=-XX:StartFlightRecording=disk=true,dumponexit=true,filename=recording-no-war.jfr,maxsize=1024m,maxage=1d,settings=profile,path-to-gc-roots=true \
+	JAVA_OPTS=-XX:StartFlightRecording=disk=true,dumponexit=true,filename=recording.jfr,maxsize=1024m,maxage=1d,settings=profile,path-to-gc-roots=true \
 	../../../target/appassembler/bin/jenkinsfile-runner \
 	-p ../../../target/plugins/ -w war-empty -f ../repo/Jenkinsfile
