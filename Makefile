@@ -25,14 +25,14 @@ run:
 .PHONY: demo-plugin
 demo-plugin:
 	docker run --rm ${DOCKER_RUN_OPTS} \
-	    -v $(shell pwd)/demo/locale-plugin/:/workspace/ \
+	    -v $(shell pwd)/demo/locale-plugin/repo/:/workspace/ \
 	    $(DOCKER_TAG)
 
 .PHONY: demo-plugin-local-lib
 demo-plugin-local-lib:
 	docker run --rm ${DOCKER_RUN_OPTS} \
 		-v ${PIPELINE_LIBRARY_DIR}:/var/jenkins_home/pipeline-library \
-	    -v $(shell pwd)/demo/locale-plugin/:/workspace/ \
+	    -v $(shell pwd)/demo/locale-plugin/repo:/workspace/ \
 	    $(DOCKER_TAG) 
 
 .PHONY: jfr-profile
