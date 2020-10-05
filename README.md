@@ -68,6 +68,19 @@ It is also possible to debug Jenkinsfile Runner and Groovy init hooks by passing
 	    onenashev/ci.jenkins.io-runner
 ```
 
+#### Profiling Jenkinsfile Runner
+
+This repository supports profiling of Jenkinsfile Runner with Java Flight Recorder.
+Due to performance reasons, profiling happens on a local machine instead of the Docker containers.
+
+To run profiling on a Unix machine:
+
+* Build ci.jenkins.io-runner locally via `mvn clean package`
+* Run `make jfr-profile` and wait till completion
+* Retrieve the `demo/locale-plugin/work/recording.jfr` file with Java Flight Recorder dump
+* Use performance analysis tools to analyze the Java Flight Recorder dump (e.g. IntelligIDEA, JDK Mission Control in AdoptOpenJDK).
+  CPU and memory usage analysis can be done with the existing tools.
+
 ### Limitations
 
 This project has just started, so it has some downsides being compared 

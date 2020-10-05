@@ -25,12 +25,22 @@ run:
 .PHONY: demo-plugin
 demo-plugin:
 	docker run --rm ${DOCKER_RUN_OPTS} \
-	    -v $(shell pwd)/demo/locale-plugin/:/workspace/ \
+	    -v $(shell pwd)/demo/locale-plugin/repo/:/workspace/ \
 	    $(DOCKER_TAG)
 
 .PHONY: demo-plugin-local-lib
 demo-plugin-local-lib:
 	docker run --rm ${DOCKER_RUN_OPTS} \
 		-v ${PIPELINE_LIBRARY_DIR}:/var/jenkins_home/pipeline-library \
-	    -v $(shell pwd)/demo/locale-plugin/:/workspace/ \
+	    -v $(shell pwd)/demo/locale-plugin/repo:/workspace/ \
 	    $(DOCKER_TAG) 
+
+.PHONY: jfr-profile
+jfr-profile:
+	mkdir -p war-empty && \
+	mkdir -p demo/locale-plugin/work && \
+	cd demo/locale-plugin/work && \
+	CASC_JENKINS_CONFIG=../../../jenkins-dev.yaml \
+	JAVA_OPTS=-XX:StartFlightRecording=disk=true,dumponexit=true,filename=recording.jfr,maxsize=1024m,maxage=1d,settings=profile,path-to-gc-roots=true \
+	../../../target/appassembler/bin/jenkinsfile-runner \
+	-p ../../../target/plugins/ -w war-empty -f ../repo/Jenkinsfile
