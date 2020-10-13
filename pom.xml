@@ -7,7 +7,7 @@
   <parent>
     <groupId>io.jenkins.jenkinsfile-runner</groupId>
     <artifactId>packaging-parent-pom</artifactId>
-    <version>1.0-beta-16</version>
+    <version>1.0-beta-18</version>
   </parent>
 
   <!-- TODO: Version is tweaked due to https://github.com/jenkinsci/jenkinsfile-runner/pull/356 -->
