@@ -1,6 +1,6 @@
 FROM jenkins/jenkinsfile-runner:build-mvncache as jfr-mvncache
 
-FROM jenkins/jenkinsfile-runner:1.0-beta-15 as jfr-base
+FROM jenkins/jenkinsfile-runner:1.0-beta-19 as jfr-base
 
 ###
 # Build stage
