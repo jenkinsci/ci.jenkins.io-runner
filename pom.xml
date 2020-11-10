@@ -34,15 +34,7 @@
     <dependency>
       <groupId>org.jenkinsci.plugins</groupId>
       <artifactId>pipeline-model-definition</artifactId>
-      <exclusions>
-        <!-- Upper bounds conflict with the Jenkins Core -->
-      <!--  <exclusion>
-          <groupId>com.google.guava</groupId>
-          <artifactId>guava</artifactId>
-        </exclusion> -->
-      </exclusions>
     </dependency>
-    <!-- newer than the bundled version in the JFR BOM -->
     <dependency>
       <groupId>org.jenkins-ci.plugins.workflow</groupId>
       <artifactId>workflow-multibranch</artifactId>
