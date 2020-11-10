@@ -7,14 +7,14 @@
   <parent>
     <groupId>io.jenkins.jenkinsfile-runner</groupId>
     <artifactId>packaging-parent-pom</artifactId>
-    <version>1.0-beta-18</version>
+    <version>1.0-beta-19</version>
   </parent>
 
   <!-- TODO: Version is tweaked due to https://github.com/jenkinsci/jenkinsfile-runner/pull/356 -->
   <artifactId>ci.jenkins.io.runner</artifactId>
   <name>ci.jenkins.io Runner Plugins</name>
   <description>Jenkinsfile Runner reference implementation which emulates ci.jenkins.io</description>
-  <version>1.0-beta-17</version>
+  <version>1.0-beta-19</version>
 
   <properties>
     <jfr.name>ci.jenkins.io-runner</jfr.name>
@@ -34,21 +34,10 @@
     <dependency>
       <groupId>org.jenkinsci.plugins</groupId>
       <artifactId>pipeline-model-definition</artifactId>
-      <!--TODO: Use BOM? -->
-      <version>1.7.1</version>
-      <exclusions>
-        <!-- Upper bounds conflict with the Jenkins Core -->
-        <exclusion>
-          <groupId>com.google.guava</groupId>
-          <artifactId>guava</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
-    <!-- newer than the bundled version in the JFR BOM -->
     <dependency>
       <groupId>org.jenkins-ci.plugins.workflow</groupId>
       <artifactId>workflow-multibranch</artifactId>
-      <version>2.22</version>
     </dependency>
 
     <dependency>
@@ -89,7 +78,6 @@
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>pipeline-stage-step</artifactId>
-      <version>2.5</version>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
@@ -110,6 +98,11 @@
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>git</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>parameterized-trigger</artifactId>
+      <version>2.35.1</version>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
