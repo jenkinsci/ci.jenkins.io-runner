@@ -150,7 +150,7 @@
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>warnings-ng</artifactId>
-      <version>8.2.0</version>
+      <version>9.15.0</version>
     </dependency>
 
     <dependency>
